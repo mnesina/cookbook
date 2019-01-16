@@ -22,3 +22,41 @@ foreach ($queryStringArr as $q) {
 ```
 
 ## 3) in php database using lib i.e. db.php :
+
+```PHP
+// Показываем ошибку только тем, кому можно (он же может видеть, например, статистику по запросам)
+$clientIp = getIp();
+if (DB_STAT_IP=='all' || DB_STAT_IP==$clientIp || empty($clientIp))
+    throw new Exception_SYS($query . ' ' . $this->mysqli->error);
+else {
+    redirect("/"); // или, например throw new Exception_SYS('приходите завтра');
+}
+
+// функция getIp():
+/**
+ * Получение IP адреса пользователя.
+ *
+ * @return string
+ */
+function getIp()
+{
+    if ($ip = getenv("HTTP_CLIENT_IP")) {
+        return $ip;
+    }
+    if ($ip = getenv("HTTP_X_FORWARDED_FOR")) {
+        if ($ip == '' || $ip == "unknown") {
+            $ip = getenv("REMOTE_ADDR");
+        }
+
+        return $ip;
+    }
+    if ($ip = getenv("REMOTE_ADDR")) {
+        return $ip;
+    }
+
+    return false;
+}
+
+// DB_STAT_IP берем из базы, или определяем в каком-нибудь settings.php
+
+```
