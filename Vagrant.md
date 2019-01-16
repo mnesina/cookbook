@@ -1,7 +1,7 @@
 <a href="https://github.com/mnesina/cookbook/blob/master/README.md">Оглавление</a>
-<h1>Vagrant - проблемы</h1>
-<h2>1) rsync</h2>
-<h2>2) vagrant global-status и ~/.vagrant.d/data/machine-index/index</h2>
+# Vagrant - проблемы
+## 1) rsync
+## 2) vagrant global-status и ~/.vagrant.d/data/machine-index/index
 
 в какой-то момент команда  `vagrant global-status`  превратилась в тыкву и перестала приносить ID виртуалок. 
 Сами эти ID ушли туда же и перестали распознаваться. т.е. команда вида 
