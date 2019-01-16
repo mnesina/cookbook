@@ -11,3 +11,6 @@ $s = 1+2;
 echo($s);
 ```
 TEST - 1
+git add test.md 
+git commit -m 'test commit'
+git push origin master
