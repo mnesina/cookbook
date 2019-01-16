@@ -16,4 +16,4 @@ foreach ($queryStringArr as $q) {
 
 }
 </pre>
-<h2>3) in php database using lib i.e. db.lib</h2> 
+<h2>3) in php database using lib i.e. db.php</h2> 
