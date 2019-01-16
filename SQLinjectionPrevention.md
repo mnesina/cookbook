@@ -1,13 +1,13 @@
 
 <a href="README.md">Оглавление</a>
-<h1>SQL injection prevention tips</h1>
-<h2>1) in nginx.conf :</h2>
+# SQL injection prevention tips
+## 1) in nginx.conf :
 
 ```bash
 if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
 ```
 
-<h2>2) in php first file i.e. index.php</h2>
+## 2) in php first file i.e. index.php
 
 ```PHP
 $queryStringArr = explode('&', ($_SERVER['QUERY_STRING']));
@@ -21,4 +21,4 @@ foreach ($queryStringArr as $q) {
 }
 ```
 
-<h2>3) in php database using lib i.e. db.php</h2> 
+## 3) in php database using lib i.e. db.php
