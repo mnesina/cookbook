@@ -3,8 +3,12 @@
 <h1>SQL injection prevention tips</h1>
 <h2>1) in nginx.conf :</h2>
 ```javascript
-if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
+var s = "Подсветка JavaScript";
+alert(s);
 ```
+<pre>
+if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
+<pre>
 <h2>2) in php first file i.e. index.php</h2>
 <pre>
 $queryStringArr = explode('&', ($_SERVER['QUERY_STRING']));
