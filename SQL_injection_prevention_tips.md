@@ -1,5 +1,5 @@
 
-
+SQL injection prevention tips
 1) in nginx.conf :
 if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
 
