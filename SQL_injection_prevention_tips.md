@@ -4,7 +4,7 @@ SQL injection prevention tips
 if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
 
 2) php
-<?php
+<pre>
 $queryStringArr = explode('&', ($_SERVER['QUERY_STRING']));
 foreach ($queryStringArr as $q) {
     $qArr = explode("=", $q);
@@ -14,5 +14,5 @@ foreach ($queryStringArr as $q) {
     }
 
 }
-?>
+</pre>
 3) php in db.lib 
