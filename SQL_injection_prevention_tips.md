@@ -2,10 +2,6 @@
 <a href="https://github.com/mnesina/cookbook/blob/master/README.md">Оглавление</a>
 <h1>SQL injection prevention tips</h1>
 <h2>1) in nginx.conf :</h2>
-```javascript
-var s = "Подсветка JavaScript";
-alert(s);
-```
 <pre>
 if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
 </pre>
