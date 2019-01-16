@@ -25,8 +25,9 @@ foreach ($queryStringArr as $q) {
 
 ```PHP
 // Показываем ошибку только тем, кому можно (он же может видеть, например, статистику по запросам)
+// Пример упрощенный - лучше работать с пулом адресов и, м.б. с разными правами
 $clientIp = getIp();
-if (DB_STAT_IP=='all' || DB_STAT_IP==$clientIp || empty($clientIp))
+if (DB_STAT_IP==$clientIp)
     throw new Exception_SYS($query . ' ' . $this->mysqli->error);
 else {
     redirect("/"); // или, например throw new Exception_SYS('приходите завтра');
@@ -47,7 +48,6 @@ function getIp()
         if ($ip == '' || $ip == "unknown") {
             $ip = getenv("REMOTE_ADDR");
         }
-
         return $ip;
     }
     if ($ip = getenv("REMOTE_ADDR")) {
