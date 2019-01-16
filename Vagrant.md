@@ -2,6 +2,38 @@
 # Vagrant - проблемы
 ## 1) rsync
 Пусть у нас имеется некое приложение, над кодом которого мы работаем у себя, а тестируем в виртуалке, создав там машину при помощи vgrant и ansible. Собственно, задача автоматизировать синхронизацию наших изменений и того, что получается на тестовой площадке. Казалось бы для этого существует `rsync-auto` , однако желающим скормить эту строчку google, поисковик заботливо предложит продолжение `vagrant rsync auto not working` 
+Решение:
+1) создаем в корне папки нашего проекта файл `vagrant_rsync.py` Вот такой:
+
+```python
+#!/usr/bin/python
+import os
+import time
+
+while True:
+    os.system("flock -n /tmp/vagrant_rsync_sh.lock -c '/bin/sh /your_path/vagrant_rsync.sh 2>&1'")
+    time.sleep(5)
+```
+или шаблон для него.
+2) `vagrant_rsync_dot_sh` с кодом:
+
+```bash
+vagrant rsync {{id}}
+```
+3) Когда все, включая среду разрабортки и т.д. подготовлено, запускаем крон-скрипты для автоматического поддержания состояния файлов кода:
+
+```bash
+cp vagrant_rsync_dot_sh vagrant_rsync.sh
+```
+на машине-хозяине в папке пректа запускаем команду: `vagrant global-status` и среди прочих данных получаем `id` машины
+
+вставляем этот `id` в файл `vagrant_rsync.sh` вместо `{{id}}` (например: было - `vagrant rsync {{id}}` стало - `vagrant rsync 569263c` )
+
+добавляем в пользовательский крон строчку:
+
+```bash
+* * * * * flock -n /tmp/vagrant_rsync_py-cron-job.lock -c '/usr/bin/python3.4 /your_path/vagrant_rsync.py 2>&1'
+```
 
 ## 2) vagrant global-status и ~/.vagrant.d/data/machine-index/index
 
