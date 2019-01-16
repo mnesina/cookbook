@@ -7,7 +7,7 @@
 if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
 ```
 
-## 2) in php first file i.e. index.php
+## 2) in php first file i.e. index.php :
 
 ```PHP
 $queryStringArr = explode('&', ($_SERVER['QUERY_STRING']));
@@ -21,4 +21,4 @@ foreach ($queryStringArr as $q) {
 }
 ```
 
-## 3) in php database using lib i.e. db.php
+## 3) in php database using lib i.e. db.php :
