@@ -1,4 +1,4 @@
-<a href="https://github.com/mnesina/cookbook/blob/master/README.md">Оглавление</a>
+<a href="README.md">Оглавление</a>
 <h1>SVN - разные полезности</h1>
 Иногда svn переглючивает. Поскольку бывает это редко, то пути решения забываются. Тут будут разные разности
 
@@ -7,18 +7,21 @@
 что должен был появиться в результате update-а,- уже существовал. 
 Попытка удалить файл и сделать update ни к чему не привела, файл не появился. 
 Поскольку речь шла о рабочем сервере пришлось загрузит файл по scp. После этого было так:</p>
-<pre>
+
+```bash
 $svn status 
 D C some_file.txt
 > local unversioned, incoming add upon update
 Summary of conflicts: 
 Tree conflicts: 1
-</pre>
+```
+
 <b>Решение проблемы:</b>
-<pre>
+
+```bash
 $ svn resolve —accept working some_file.txt
 Resolved conflicted state of 'some_file.txt' 
 $ svn revert some_file.txt
 Reverted 'some_file.txt'
 $ svn status
-</pre>
+```
