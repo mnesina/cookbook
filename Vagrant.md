@@ -15,9 +15,10 @@
 Оказалось, что файл ~/.vagrant.d/data/machine-index/index обнулился =>
 Вытаскиваем аналогичный файл с другой машины:
 
-<pre>
+```bash
 cat ~/.vagrant.d/data/machine-index/index
-
+```
+<pre>
 {"version":1,"machines":{"ee3d590faac24b0e9f883726d9a28803":{"local_data_path":"/home/mar/www/null_new_test_ansible/.vagrant","name":"default","provider":"virtualbox","state":"running","vagrantfile_name":null,"vagrantfile_path":"/home/mar/www/null_new_test_ansible","updated_at":null,"extra_data":{"box":{"name":"centos/7","provider":"virtualbox","version":"1609.01"}}},"42e76840739d4b8fbe99392a06d01a47":{"local_data_path":"/home/mar/www/null_new_test/.vagrant","name":"default","provider":"virtualbox","state":"running","vagrantfile_name":null,"vagrantfile_path":"/home/mar/www/null_new_test","updated_at":null,"extra_data":{"box":{"name":"centos/7","provider":"virtualbox","version":"1609.01"}}},"960343bb1f3b483aa92f5e95dcb2844b":{"local_data_path":"/home/mar/www/null_new_test_php/.vagrant","name":"default",
 "provider":"virtualbox","state":"running","vagrantfile_name":null,"vagrantfile_path":"/home/mar/www/null_new_test_php","updated_at":null,"extra_data":{"box":{"name":"centos/7","provider":"virtualbox","version":"1609.01"}}}}}
 </pre>
