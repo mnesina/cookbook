@@ -1,10 +1,10 @@
 
 <h1>SQL injection prevention tips</h1>
-1) in nginx.conf :
+1) <h2>in nginx.conf :</h2>
 <pre>
 if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
 </pre>
-2) php
+2) <h2>in php first file i.e. index.php</h2>
 <pre>
 $queryStringArr = explode('&', ($_SERVER['QUERY_STRING']));
 foreach ($queryStringArr as $q) {
@@ -16,4 +16,4 @@ foreach ($queryStringArr as $q) {
 
 }
 </pre>
-3) php in db.lib 
+3) <h2>in php database using lib i.e. db.lib</h2> 
