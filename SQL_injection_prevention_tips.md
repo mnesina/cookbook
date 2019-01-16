@@ -8,7 +8,7 @@ alert(s);
 ```
 <pre>
 if ($args ~* '(select|union|update|insert|table|ascii|hex|unhex|drop)' ) { return 403; }
-<pre>
+</pre>
 <h2>2) in php first file i.e. index.php</h2>
 <pre>
 $queryStringArr = explode('&', ($_SERVER['QUERY_STRING']));
