@@ -1,6 +1,6 @@
 <h1>Vagrant - проблемы</h1>
-<h2>rsync</h2>
-<h2>2)vagrant global-status и ~/.vagrant.d/data/machine-index/index</h2>
+<h2>1) rsync</h2>
+<h2>2) vagrant global-status и ~/.vagrant.d/data/machine-index/index</h2>
 в какой-то момент команда vagrant global-status превратилась в тыкву и перестала приносить ID виртуалок. 
 Сами эти ID ушли туда же и перестали распознаваться. т.е. команда вида 
 <pre>vagrant rsync 637b72c</pre> 
