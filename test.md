@@ -15,4 +15,6 @@ TEST - 1
 git add test.md 
 git commit -m 'test commit'
 git push origin master
+
+git pull origin master
 ```
