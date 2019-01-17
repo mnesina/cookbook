@@ -60,3 +60,12 @@ function getIp()
 // DB_STAT_IP берем из базы, или определяем в каком-нибудь settings.php
 
 ```
+## 4) общее по безопасности (пока добавляю сюда)
+
+В потенциально опасные каталоги (туда, где возможна загнрузка, например, upload, tmp и т.д. если они не вынесены за пределы файловой структуры самого сайта)
+добавляем в `.htaccess`
+
+```bash
+php_flag engine 0
+AddType "text/html" .php .cgi .pl .fcgi .fpl .phtml .shtml .php2 .php3 .php4 .php5 .asp .jsp
+```
