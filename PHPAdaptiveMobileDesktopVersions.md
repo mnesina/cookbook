@@ -123,7 +123,7 @@ function get_dfirst_index_php()
 
     return $res;
 }
-```
+
 // SITE_DOMEIN - определено в settings.php как, например, 
 define("SITE_DOMEIN", "test.com");		/* Домен */ 
-
+```
