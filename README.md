@@ -1,4 +1,4 @@
-# Cookbook Just a bit from my experience
+# Cookbook. Just a bit from my experience
 
 <ul>
   <li><a href="SQLinjectionPrevention.md">SQL injection prevention tips</a></li>
