@@ -29,8 +29,8 @@ git pull origin master
 ## Дампы для относительно небольших проектов (с использованием mysql)
 
 * со стороны сервера: 
- * устанавливаем rsyncd 
- * `/etc/rsyncd.conf`
+  * устанавливаем rsyncd 
+  * `/etc/rsyncd.conf`
  ```
 pid file = /var/run/rsyncd.pid
 uid = root
@@ -48,7 +48,7 @@ read only = yes
 list = false
 hosts allow = first_host second_host
 ```
- * `/etc/hosts` - на случай изменений IP удобней в конфигурационных фалах использовать не IP, а имена хостов 
+  * `/etc/hosts` - на случай изменений IP удобней в конфигурационных фалах использовать не IP, а имена хостов 
 
 ```bash
 xxx.xxx.xxx.xxx first_host
