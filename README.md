@@ -4,6 +4,7 @@
 * [SQL injection prevention tips](SQLinjectionPrevention.md)
 * [SVN tips](svn.md)
 * [Vagrant](Vagrant.md)
+* [Server](server.md)
 * PHP
    * [PHP - problems & solutions](PHPProblems.md)
    * PHP coding
