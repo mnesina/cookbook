@@ -21,3 +21,23 @@ git push origin master
 
 git pull origin master
 ```
+
+
+ ```
+pid file = /var/run/rsyncd.pid
+uid = root
+gid = root # or wheel if FreeBSD
+
+
+[www]
+        path = /www
+        read only = yes
+        list = false
+        hosts allow = xxx.xxx.xxx.xxx
+[bckp_mysql]
+        path = /path_to_backup/db/
+        read only = yes
+        list = false
+        hosts allow = xxx.xxx.xxx.xxx
+
+ ```
