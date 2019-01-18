@@ -31,29 +31,29 @@ git pull origin master
 * со стороны сервера: 
   * устанавливаем rsyncd 
   * `/etc/rsyncd.conf`
- ```
-pid file = /var/run/rsyncd.pid
-uid = root
-gid = root # or wheel if FreeBSD
+     ```
+    pid file = /var/run/rsyncd.pid
+    uid = root
+    gid = root # or wheel if FreeBSD
 
-[site]
-path = /path_to_site
-read only = yes
-list = false
-hosts allow = first_host second_host
+    [site]
+    path = /path_to_site
+    read only = yes
+    list = false
+    hosts allow = first_host second_host
 
-[db]
-path = /path_to_backup/db/
-read only = yes
-list = false
-hosts allow = first_host second_host
-```
+    [db]
+    path = /path_to_backup/db/
+    read only = yes
+    list = false
+    hosts allow = first_host second_host
+    ```
   * `/etc/hosts` - на случай изменений IP удобней в конфигурационных фалах использовать не IP, а имена хостов 
 
-```bash
-xxx.xxx.xxx.xxx first_host
-yyy.yyy.yyy.yyy second_host
-```
+    ```bash
+    xxx.xxx.xxx.xxx first_host
+    yyy.yyy.yyy.yyy second_host
+    ```
  
  
 
