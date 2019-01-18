@@ -84,6 +84,6 @@
 
 ## nginx и gzip
 
-Для сжатия файлов `js` к `gzip_types` надо кроме стандартного `application/x-javascript` добавить: `application/javascript`  и  `text/javascript`
+Для сжатия файлов `js` в `nginx.conf` к `gzip_types` надо кроме стандартного `application/x-javascript` добавить: `application/javascript`  и  `text/javascript`
 
 
