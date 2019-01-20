@@ -20,7 +20,7 @@
 ## Memcache в PHP5 и PHP7
 (Подробней о работе с memcache [у меня тут](PHPDBMemcache.md)
 При переходе с PHP5 на PHP7 сталкиваемся с проблемой, [описанной][3] еще в 2016 году: перестала работать установка memcache: `sudo pecl install memcache`. Собственно, поддержка оказывается просто убранной и нам остается либо: 
-* работать с неофициальной библиотекой [pecl-memcache][4] и тогда код остается прежним
+* работать с неофициальной библиотекой [pecl-memcache][4]  (а точнее: https://github.com/websupport-sk/pecl-memcache/archive/php7.zip) и тогда код остается прежним
 * либо идти через memcache-d В этом случае по-разному идет работа с данными:
     ```PHP
     # memcache:
@@ -52,6 +52,16 @@
     ```
     * и удалении ключей (для memcacheD это проще - `$memcache->deleteMulti(array($pattern));`)
     
+* см. также http://php.net/manual/ru/book.memcached.php
+    
+<!--
+Maryanna Nesina, [07.05.18 16:16]
+я под php7 для CentOS на виртуалке с memcache, помнится, плясала с бубном - оно просто так не вставало
 
+Maryanna Nesina, [07.05.18 16:16]
+но у меня еще могли наклыдываться проблемы с ansible
+
+Maryanna Nesina, [07.05.18 16:16]
+и с тем, что http://rpms.remirepo.net  не работал и я в результате брала тут: https://github.com/websupport-sk/pecl-memcache/archive/php7.zip -->
 [3]: https://bugs.php.net/bug.php?id=72887
 [4]: https://github.com/websupport-sk/pecl-memcache

@@ -7,10 +7,10 @@
 
     ## 1) В общих установках определяем глобальную переменную и параметры подключения. Например, так:
     /** Memcache **/
-    define("MEMCACHE_HOST", "localhost");				/* Хост */
-    define("MEMCACHE_PORT", 11211);						/* Порт */
-    define("DO_MEMCACHE", true);						/* Включен ли мемкеш */
-    define("DO_MEMCACHED", true);                      /* Включен ли мемкеш-D */
+    define("MEMCACHE_HOST", "localhost");	/* Хост */
+    define("MEMCACHE_PORT", 11211);			/* Порт */
+    define("DO_MEMCACHE", true);			/* Включен ли мемкеш */
+    define("DO_MEMCACHED", true);           /* Включен ли мемкеш-D */
     
     ## 2) Подключаем memcache (по-разному для PHP5 и PHP7)
     if(DO_MEMCACHE) {
