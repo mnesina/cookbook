@@ -7,18 +7,20 @@
     /**
      * Добавление записи к таблице
      *
-     * @param string $table
-     * @param array $data
-     * @param null/string $allowable_tags
-     * @param  string $ignore
-     * @param string $on_duplicate_key
-     * @return mixed/bool
+     * @param string $table - таблица
+     * @param array $data - массив данных
+     * @param null/string $allowable_tags - разрешенные теги html 
+     * @param  string $ignore - для директивы IGNORE (для таблиц с индексами UNIQUE) 
+     * @param string $on_duplicate_key - если для таблиц с индексами UNIQUE следует отработать ON DUPLICATE KEY
+     * @return int/bool
+     *
+     * NB! В случае использования ON DUPLICATE KEY следует позаботиться о подготовке того, что там вводится
      */
 
-    public function createRow($table, $data, $allowable_tags = null, $ignore = '', $on_duplicate_key = '',$do_transaction_isolation=null, $do_transaction_isolation_old='REPEATABLE READ')
+    public function createRow($table, $data, $allowable_tags = null, $ignore = '', $on_duplicate_key = '')
     {
         try {
-            foreach ($data as $k => $v) {
+            foreach ($data as $k => $v) { // работаем с входным массивом данных - с тем, что, собственно, мы хотим внести в запись таблицы $table
 
                 if (is_array($v)) {
                     $v_tmp = implode(",", $v);
@@ -36,20 +38,21 @@
                 $data[$k] = "'" . $this->escape($v) . "'";
             }
 
-            $cols = implode("`, `", (array_keys($data)));
-            $vals = implode(', ', (array_values($data)));
+            $cols = implode("`, `", (array_keys($data))); // получаем строку из массива полей таблицы (кстати, можно их еще дополнительно проверить)
+            $vals = implode(', ', (array_values($data))); // получаем строку из массива значений для полей таблицы
 
-            $cols = "`" . $cols . "`";
+            $cols = "`" . $cols . "`"; // для mysql
 
-            $query = "INSERT {$ignore} INTO " . $table . " (" . $cols . ") VALUES (" . $vals . ") {$on_duplicate_key} ";
+            // Получаем итоговую строку запроса
+            $query = "INSERT {$ignore} INTO {$table} ( {$cols} ) VALUES ( {$vals} ) {$on_duplicate_key} ";
 
 
-            $this->query($query);
+            $this->query($query); // выполняем запрос
 
-            return $this->insert_id; 
+            return $this->insert_id; // Возвращаем ID записи
 
         } catch (Exception_SYS $e) {
-            echo "DB Exception: $e";
+            echo "DB Exception: $e"; // или то, что мы с этим делаем
             // тут `exit;` или `return false;`
         }
 

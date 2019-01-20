@@ -14,6 +14,44 @@
 
 Важно понимать, что проблема может не наблюдаться разработчиками, имеющих хорошую связь с сервером, но в полный рост "радовать" удаленных пользователей. Поэтому, если мы имеем дело с `cms` в котрой страница отдается при помощи `echo`, меры нужно принимать заранее =)
 
-
 [1]: https://bugs.php.net/bug.php?id=18029
 [2]: https://habr.com/ru/post/45016/
+
+## Memcache в PHP5 и PHP7
+(Подробней о работе с memcache [у меня тут](PHPDBMemcache.md)
+При переходе с PHP5 на PHP7 сталкиваемся с проблемой, [описанной][3] еще в 2016 году: перестала работать установка memcache: `sudo pecl install memcache`. Собственно, поддержка оказывается просто убранной и нам остается либо: 
+* работать с неофициальной библиотекой [pecl-memcache][4] и тогда код остается прежним
+* либо идти через memcache-d В этом случае по-разному идет работа с данными:
+    ```PHP
+    # memcache:
+    $memcache = new Memcache;
+    $memcache->addServer($host);
+    # memcacheD
+    $memcacheD = new Memcached;
+    $memcacheD->addServers($servers);
+    ```
+    Собственно, для совместимости старого и нового достаточно:
+    *  разницы в объявлении
+    ```PHP
+    if(DO_MEMCACHED) { // PHP7
+        $memcache = new Memcached();
+        $memcache->addServers(array(array(MEMCACHE_HOST, MEMCACHE_PORT)));
+    } else { // PHP5
+        $memcache = new Memcache();
+        $memcache->addServer(MEMCACHE_HOST, MEMCACHE_PORT);
+
+    }
+    ```
+    * отправке данных
+    ```PHP
+      if(DO_MEMCACHED) {
+            $memcache->set($key, $row, $expiration);
+      } else {
+            $memcache->set($key, $row, MEMCACHE_COMPRESSED, $expiration);
+      }
+    ```
+    * и удалении ключей (для memcacheD это проще - `$memcache->deleteMulti(array($pattern));`)
+    
+
+[3]: https://bugs.php.net/bug.php?id=72887
+[4]: https://github.com/websupport-sk/pecl-memcache
