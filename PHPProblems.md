@@ -65,3 +65,4 @@ Maryanna Nesina, [07.05.18 16:16]
 и с тем, что http://rpms.remirepo.net  не работал и я в результате брала тут: https://github.com/websupport-sk/pecl-memcache/archive/php7.zip -->
 [3]: https://bugs.php.net/bug.php?id=72887
 [4]: https://github.com/websupport-sk/pecl-memcache
+

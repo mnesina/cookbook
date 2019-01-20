@@ -146,3 +146,121 @@
     ```
  
 ```
+# Работа с memcache и sphinx на примере одной из функций (упрощенный вариант)
+
+```PHP
+    /**
+     * Подсчет общего числа попугаев (некие сущности, пусть будут Smth)
+     *
+     * @param array $filterArr - массив фильтров
+     * @param array $setSellArr - дополнительный массив для фильтров (с использованием OR)
+     *
+     * @return int - общее число объявлений в выборке
+     */
+
+    public static function countSmthSearchSphinx($filterArr, $setSellArr, $ind = 'ind1,ind1_delta', $key_q_string = '', $nomemcache=false)
+    {
+
+        global $sphinx, $memcache;
+
+        $q = ''; // сам текстовый запрос
+
+        if (DO_MEMCACHE && !$nomemcache) {
+            if (empty($key_q_string)) {
+                $filterArrAtring = implode(",", array_keys($filterArr));
+                $filterArrAtring .= implode(",", $filterArr);
+                $setSellArrString = implode(",", $setSellArr);
+                $key_q_string = "{$filterArrAtring}:{$setSellArrString}:{$ind}";
+            }
+
+            $cache_pref = "smth:countSmthSearchSphinx_";
+            $keyMain = $cache_pref . md5($key_q_string);
+
+            $result = $memcache->get($keyMain);
+
+
+            if (!empty($result) && !$debug)
+                return $result;
+
+        }
+
+
+        // Вызываем в начале т.к. иначе, если не было ничего найдено при предыдущем вызове, новый вызов отрабатывает некорректно
+        $sphinx->ResetFilters();
+
+        //$sphinx->SetMatchMode( SPH_MATCH_ANY  ); // ищем хотя бы 1 слово из поисковой фразы		
+
+        $ids = array();
+
+        if (!empty($setSellArr)) {
+            $setSelString = implode(' AND ', $setSellArr);
+            $setSelString = " ( $setSelString ) AS my_sel ";
+
+            $sphinx->SetSelect("*, $setSelString ");
+            $sphinx->SetFilter("my_sel", array(1));
+        }
+
+        // Ищем только активные
+        if(empty($admin)) {
+            if($ind == 'ind1,ind1_delta')
+                $sphinx->SetFilter('active', array(1));
+        }
+
+        // Готовим фильтры
+        if (!empty($filterArr)) {
+            foreach ($filterArr as $key => $value) {
+                if ($key == 'q') {
+                    $q = $value;
+                } else {
+                    if (is_array($value)) {
+                        $sphinx->SetFilter($key, (int)$value[0], (int)$value[1]);
+                    } else {
+                        $sphinx->SetFilter($key, array((int)$value));
+                    }
+                }
+
+            }
+        }
+
+
+        // Если не указать метод сортировки в явном виде,
+        // отыгрывает предыдущий и, при использовании разных индексов, может быть ошибка
+        $sphinx->SetSortMode(SPH_SORT_EXTENDED,' @relevance desc');
+        $result = $sphinx->Query($q, $ind /*'ind1,ind1_delta'*/);
+
+        $res_count = 0;
+        $total_found = 0;
+
+        if ($result === false) {
+            if ($debug) {
+                echo "Query failed: " . $sphinx->GetLastError() . ".\n";
+            }
+
+            return 0;
+        } else {
+
+            if (isset($result['total_found']))
+                $total_found = $result['total_found'];
+            if (isset($result['total']))
+                $res_count = $result['total'];
+
+            unset($result);
+
+        }
+
+        if (DO_MEMCACHE && !$nomemcache) {
+
+            $expiration = 600;
+
+            if(DO_MEMCACHED) {
+                $memcache->set($keyMain, $total_found, $expiration);
+            } else {
+                $memcache->set($keyMain, $total_found, MEMCACHE_COMPRESSED, $expiration);
+            }
+        }
+
+        return $total_found; //$res_count;
+
+    }
+
+```
