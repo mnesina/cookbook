@@ -8,8 +8,8 @@
     ## 1) В общих установках определяем глобальную переменную и параметры подключения. Например, так:
     /** Memcache **/
     define("MEMCACHE_HOST", "localhost");	/* Хост */
-    define("MEMCACHE_PORT", 11211);			/* Порт */
-    define("DO_MEMCACHE", true);			/* Включен ли мемкеш */
+    define("MEMCACHE_PORT", 11211);	/* Порт */
+    define("DO_MEMCACHE", true);	/* Включен ли мемкеш */
     define("DO_MEMCACHED", true);           /* Включен ли мемкеш-D */
     
     ## 2) Подключаем memcache (по-разному для PHP5 и PHP7)
@@ -109,12 +109,12 @@
             if (!is_array($allSlabs))
                 return false;
 
-            foreach ($allSlabs as $server => $slabs) {
+            foreach ($allSlabs as $server => $slabs) { //--allSlabs
 
                 if (!is_array($slabs))
                     continue;
 
-                foreach ($slabs AS $slabId => $slabMeta) {
+                foreach ($slabs AS $slabId => $slabMeta) { //--$slabs
 
                     $slabIdInt = (int)$slabId;
                 
@@ -125,20 +125,20 @@
                     if (!is_array($cdump))
                         continue;
 
-                    foreach ($cdump AS $keys => $arrVal) {
+                    foreach ($cdump AS $keys => $arrVal) { //--$cdump
                         if (!is_array($arrVal))
                             continue;
 
-                        foreach ($arrVal AS $k => $v) {
+                        foreach ($arrVal AS $k => $v)  { //--$arrVal
                             if (strstr($k, $pattern)) { // тут для разных версий 5-й ветки PHP отрабатывало по-разному
                                 //$memcache->delete($k,0);
                                 $memcache->set($k, 0);
                                 //$memcache->set($k,NULL);
-                            }
-                        }
-                    }
-                }
-            }
+                            } // -- if
+                        } //--$arrVal
+                    } //--$cdump
+                } //--$slabs
+            } //--allSlabs
 
             return true;
         }
