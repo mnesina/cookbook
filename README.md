@@ -5,6 +5,7 @@
 * [SVN tips](svn.md)
 * [Vagrant](Vagrant.md)
 * [Server](server.md)
+* [Sphinx](Sphinx.md)
 * PHP
    * [PHP - problems & solutions](PHPProblems.md)
    * PHP coding
@@ -12,4 +13,4 @@
      * Databases and nosql usage in PHP 
         * [Inserting a row in database table (for db class)](PHPDBCreateRow.md)
         * [Memcache usage with database, sphinx and so on](PHPDBMemcache.md)
-        * [Sphinx](Sphinx.md)
+        * [Sphinx and PHP](PHPSphinx.md)
