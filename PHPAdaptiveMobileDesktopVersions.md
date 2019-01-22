@@ -134,3 +134,4 @@ function getDfirstIndexPhp()
 // SITE_DOMEIN - определено в settings.php как, например, 
 define("SITE_DOMEIN", "test.com");		/* Домен */ 
 ```
+Дальнейший способ выбора страниц и шаблонов зависит уже от того, как это вообще делается в коде
