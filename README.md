@@ -10,7 +10,7 @@
 * [Mysql](Mysql.md) -
 * [Sphinx](Sphinx.md) -
 * PHP
-   * [PHP - problems & solutions](PHPProblems.md) 
+   * [PHP - problems & solutions](PHPProblems.md) +/-
    * PHP coding
      * [Choosing mobile, adaptive or desctop versions](PHPAdaptiveMobileDesktopVersions.md) 
      * [Sending 304 status to robots](PHPsending304status.md) -
