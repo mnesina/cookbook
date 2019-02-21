@@ -19,7 +19,7 @@
         * [Inserting a row in database table (for db class)](PHPDBCreateRow.md)
         * [Memcache usage with database, sphinx and so on](PHPDBMemcache.md)
         * [Sphinx and PHP](PHPSphinx.md) -
-* python (?)
+* python (?) [про сравнение дат из парсера - сюда] -
 * bash (?)
 * OpenSuse - descktop (?)
 * FreeBSD (?)
