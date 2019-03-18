@@ -11,3 +11,7 @@
 ## mysqldump, хранимые процедуры и триггеры
 
 ## Тормоза при LIMIT [начиная с чего-то большого] для больших выборок
+
+## INSERT IGNORE
+
+## INSERT IGNORE и deadlock
