@@ -110,3 +110,4 @@ PermitRootLogin no
 ```bash
 systemctl restart sshd.service
 ```
+## Запуск единственного экземпляра скрипта и проблема перезагрузуи (flock)
