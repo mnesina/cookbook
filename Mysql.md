@@ -15,3 +15,4 @@
 ## INSERT IGNORE
 
 ## INSERT IGNORE и deadlock
+Ошибка: "Lock wait timeout exceeded; try restarting transaction" 
