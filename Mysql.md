@@ -15,4 +15,4 @@
 ## INSERT IGNORE
 
 ## INSERT IGNORE и deadlock
-Ошибка: "Lock wait timeout exceeded; try restarting transaction" 
+Ошибка: "INSERT IGNORE INTO xxx (...) VALUES (...) Deadlock found when trying to get lock; try restarting transaction"
